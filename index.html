@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Voice AI</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#111827,#4c1d95);
+    color:white;
+    min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+}
+
+.logo{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+.card{
+    background:rgba(255,255,255,.1);
+    padding:22px;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+.upload{
+    border:2px dashed #aaa;
+    padding:30px 15px;
+    border-radius:15px;
+    text-align:center;
+}
+
+input[type=file]{
+    width:100%;
+    margin-top:15px;
+}
+
+textarea{
+    width:100%;
+    height:140px;
+    border:0;
+    border-radius:15px;
+    padding:15px;
+    box-sizing:border-box;
+    font-size:17px;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:#8b5cf6;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.status{
+    text-align:center;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+🎙️ My Voice AI
+</div>
+
+<div class="card">
+
+<h2>🎤 Create Your Voice</h2>
+
+<div class="upload">
+
+<p>Upload your voice sample</p>
+
+<input
+type="file"
+id="voiceFile"
+accept="audio/*">
+
+</div>
+
+<label>
+<br>
+<input type="checkbox" id="permission">
+I own this voice or have permission to use it.
+</label>
+
+<button onclick="createVoice()">
+Create Voice
+</button>
+
+<div id="voiceStatus" class="status"></div>
+
+</div>
+
+<div class="card">
+
+<h2>✍️ Enter Text</h2>
+
+<textarea
+id="text"
+placeholder="ဒီနေရာမှာ မြန်မာစာ ရိုက်ပါ..."></textarea>
+
+<button onclick="generateVoice()">
+🔊 Generate Voice
+</button>
+
+<div id="generateStatus" class="status"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function createVoice(){
+
+let file=document.getElementById("voiceFile").files[0];
+
+let permission=document.getElementById("permission").checked;
+
+let status=document.getElementById("voiceStatus");
+
+if(!file){
+status.innerText="❌ အသံဖိုင် အရင်ရွေးပါ။";
+return;
+}
+
+if(!permission){
+status.innerText="❌ အသံအသုံးပြုခွင့်ကို အတည်ပြုပေးပါ။";
+return;
+}
+
+status.innerText="✅ Voice sample အဆင်သင့်ဖြစ်ပါပြီ။";
+
+}
+
+function generateVoice(){
+
+let text=document.getElementById("text").value;
+
+let status=document.getElementById("generateStatus");
+
+if(!text.trim()){
+status.innerText="❌ စာအရင်ထည့်ပါ။";
+return;
+}
+
+status.innerText="⏳ AI Voice Engine ချိတ်ဆက်ရန် အသင့်ဖြစ်ပါပြီ။";
+
+}
+
+</script>
+
+</body>
+  </html>
